@@ -1,0 +1,14 @@
+{
+
+  "name": "cypress-demo-cura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress open",
+    "run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^14.3.0"
+  }
+}
