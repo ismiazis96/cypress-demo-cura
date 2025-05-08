@@ -1,0 +1,5 @@
+{
+    "username": "#txt-username",
+    "password": "#txt-password",
+    "submit": "#btn-login"
+}

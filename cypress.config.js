@@ -1,4 +1,7 @@
 const { defineConfig } = require("cypress");
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 module.exports = defineConfig({
   viewportWidth: 1920,
@@ -11,7 +14,13 @@ module.exports = defineConfig({
   videosFolder: "cypress/videos",
   experimentalStudio: true,  //ini agar bisa di jalankan record secara otomatis code di buat.
   e2e: {
-    baseUrl: 'https://katalon-demo-cura.herokuapp.com',
+    //baseUrl: 'https://katalon-demo-cura.herokuapp.com',
+
+    baseUrl:process.env.BASE_URL,
+    env: {
+      ...process.env
+    },
+
     setupNodeEvents(on, config) {
       
       // implement node event listeners here

@@ -1,3 +1,5 @@
+const loginPage = require('../../support/page-object/loginPage');
+const bookingPage = require('../../support/page-object/bookingPage');
 
 describe('Login Tests on CURA', () => {
     // const baseUrl = '/';
@@ -5,31 +7,32 @@ describe('Login Tests on CURA', () => {
     beforeEach(() => {
       // cy.visit(baseUrl);
       cy.visit('/');
-      cy.contains('Make Appointment').click();
+      //cy.contains('Make Appointment').click();
+      bookingPage.goToAppointment();
     });
   
     it('Login with valid credentials (positive)', () => {
-      cy.get('#txt-username').type('John Doe');
-      cy.get('#txt-password').type('ThisIsNotAPassword');
-      cy.get('#btn-login').click();
+      // panggil fungsi login positive
+      loginPage.login({});
   
       cy.url().should('include', 'appointment');
       cy.contains('Make Appointment').should('exist');
     });
   
     it('Login with invalid password (negative)', () => {
-      cy.get('#txt-username').type('John Doe');
-      cy.get('#txt-password').type('WrongPassword');
-      cy.get('#btn-login').click();
+      // panggil fungsi login negative invalid field
+      loginPage.loginWrong();
     
       cy.wait(2000);
       cy.get('.text-danger').should('contain', 'Login failed');
     });
   
     it('Login with empty fields (negative)', () => {
-      cy.get('#btn-login').click();
-      cy.wait(2000);
-      cy.get('.text-danger').should('contain', 'Login failed');
+        // panggil fungsi login negative field empty
+        loginPage.loginEmpty();
+
+        cy.wait(2000);
+        cy.get('.text-danger').should('contain', 'Login failed');
     });
   });
   
